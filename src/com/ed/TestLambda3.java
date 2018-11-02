@@ -29,4 +29,30 @@ public class TestLambda3 {
             System.out.println(emp);
         }
     }
+
+    //用于处理字符串
+    public String strHandler(String str,MyFunction mf){
+        return mf.getValue(str);
+    }
+
+    @Test
+    public void test2(){
+        String trimStr = strHandler("\t\t\t  去除首尾空格 ", (str) -> str.trim());
+        System.out.println(trimStr);
+
+        String upper = strHandler("abc", (str) -> str.toUpperCase());
+        System.out.println(upper);
+    }
+
+
+    //对两个Long型数据进行处理
+    public void op(Long l1,Long l2,MyFunction2<Long,Long> mf){
+        System.out.println(mf.getValue(l1,l2));
+    }
+
+    @Test
+    public void Test3(){
+        op(100L,200L,(x,y)->x+y);
+        op(100L,200L,(x,y)->x*y);
+    }
 }
